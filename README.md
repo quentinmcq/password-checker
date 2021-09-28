@@ -4,10 +4,13 @@ Extension for checking passwords strength and generating passwords.
 
 Supports multiple `password` inputs on a single page.
 
-## Interface
+## Interface générale
 
-![PasswordChecker interface](http://static.arfeo.net/passwordchecker/pc.png)
+![PasswordChecker interface](src/static/interface.png)
 
-![PasswordChecker interface](http://static.arfeo.net/passwordchecker/pc_inaction_01.png)
+## Affichage
+### Mot de passe faible
+![PasswordChecker interface](src/static/weak-password.png)
 
-![PasswordChecker interface](http://static.arfeo.net/passwordchecker/pc_inaction_02.png)
+### Mot de passe fort
+![PasswordChecker interface](src/static/strong-password.png)

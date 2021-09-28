@@ -1,66 +1,70 @@
 const generatePassword = len => {
-	let password = ''
-	let character = ''
+    let password = ''
+    let character = ''
 
-	while (len > password.length) {
-		if (password.indexOf(character = String.fromCharCode(Math.floor(Math.random() * 94) + 33), Math.floor(password.length / 94) * 94) < 0) {
-			password += character
-		}
-	}
+    while (len > password.length) {
+        if (password.indexOf(character = String.fromCharCode(Math.floor(Math.random() * 94) + 33), Math.floor(password.length / 94) * 94) < 0) {
+            password += character
+        }
+    }
 
-	return password
+    return password
 }
 
 const passwordRegenerateClickHandler = () => {
-	const generatorInput = document.getElementById('password-generator-input')
-	const lengthInput = document.getElementById('password-length')
-	const lengthText = document.getElementById('password-length-text')
+    const generatorInput = document.getElementById('password-generator-input')
+    const lengthInput = document.getElementById('password-length')
+    const lengthText = document.getElementById('password-length-text')
 
-	generatorInput.value = generatePassword(lengthInput.value)
+    generatorInput.value = generatePassword(lengthInput.value)
 
-	try {
-		localStorage.setItem('password_length', JSON.stringify(lengthInput.value))
-	} catch(e) {
-		console.error(e)
-	}
+    try {
+        localStorage.setItem('password_length', JSON.stringify(lengthInput.value))
+    } catch (e) {
+        console.error(e)
+    }
 
-	lengthText.innerHTML = lengthInput.value
+    lengthText.innerHTML = lengthInput.value
 }
 
 window.onload = () => {
-	const checkSwitcher = document.getElementById('password-check')
-	const lengthInput = document.getElementById('password-length')
-	const regenerateButton = document.getElementById('password-regenerate')
+    const checkSwitcher = document.getElementById('password-check');
+    const lengthInput = document.getElementById('password-length');
+    const regenerateButton = document.getElementById('password-regenerate');
 
-	// Set initial switcher & password generator state
-	try {
-		checkSwitcher.checked = (n = JSON.parse(localStorage.getItem('password_checker'))) ? n : false
-		lengthInput.value = (n = JSON.parse(localStorage.getItem('password_length'))) ? n : 16
-	} catch(e) {
-		checkSwitcher.checked = false
-		lengthInput.value = 16
-		console.error(e) 
-	}
+    const saveCheckerState = JSON.parse(localStorage.getItem('password_checker'));
+    const savePasswordLength = JSON.parse(localStorage.getItem('password_length'));
 
-	// On switcher change -- save its state to local storage
-	checkSwitcher.addEventListener('change', e => {
-		const state = e.target.checked
+    /**
+     * Save the state of the switcher in the local storage
+     * Save the choice length value for the password
+     */
+    checkSwitcher.checked = saveCheckerState ?? false
+    lengthInput.value = savePasswordLength ?? 16;
 
-		try {
-			localStorage.setItem('password_checker', JSON.stringify(state))	
-		} catch(e) {
-			console.error(e)
-		}
+    // On switcher change, we save the checker state in the local storage
+    checkSwitcher.addEventListener('change', e => {
+        // True or false
+        const state = e.target.checked;
 
-		chrome.tabs.query({currentWindow: true, active: true}, tabs => {
-			chrome.tabs.sendMessage(tabs[0].id, { cmd: "setState", state });
-		})
-	})
+        try {
+            localStorage.setItem('password_checker', JSON.stringify(state));
+        } catch (e) {
+            console.error(e);
+        }
 
-	// Set up password generator
-	passwordRegenerateClickHandler()
+        // Send and save the checker state (in the case we refresh the page)
+        browser.tabs.query({currentWindow: true, active: true}, tabs => {
+            browser.tabs.sendMessage(tabs[0].id, {cmd: "setState", state});
+        })
+    })
 
-	// Set up event handlers
-	regenerateButton.addEventListener('click', passwordRegenerateClickHandler.bind(null))
-	lengthInput.addEventListener('input', passwordRegenerateClickHandler.bind(null))
+    // Generate a new password each time we refresh the page
+    passwordRegenerateClickHandler();
+
+    // Regenerate a new password on click
+    regenerateButton.addEventListener('click', passwordRegenerateClickHandler)
+
+    // Create new password each time we move the slider
+    lengthInput.addEventListener('input', passwordRegenerateClickHandler)
 }

@@ -13,7 +13,7 @@
   "browser_action": {
     "default_title": "PasswordChecker",
     "default_popup": "src/index.html",
-    "default_icon": "src/static/icon.png"
+    "default_icon": "src/static/lock.png"
   },
 
   "content_scripts": [{
