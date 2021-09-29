@@ -14,7 +14,7 @@ const generatePassword = passwordLength => {
     }
 
     if (!passwordLetter.checked && !passwordNumber.checked) {
-        chars = '0123456789abcdefghijklmnopqrstuvwxyz';
+        chars = '0123456789abcdefghijklmnopqrstuvwxyz!@#$%^&*()ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     }
 
 
