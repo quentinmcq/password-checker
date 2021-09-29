@@ -91,38 +91,38 @@ const constructContainers = () => {
             //// Create a container
 
             // Create an icon
-            pc.className = `password-checker`
-            pc_icon.className = `password-checker__icon`
+            pc.className = `password-checker`;
+            pc_icon.className = `password-checker__icon`;
             pc_icon.style.cssText = (`
 				top: calc(3px + ${window.getComputedStyle(i).getPropertyValue('margin-top')}) !important;
 				right: 3px !important;
 				height: calc(${ipos.bottom}px - ${ipos.top}px - 6px) !important;
-			`)
-            i.parentNode.insertBefore(pc, i)
-            pc.appendChild(pc_icon)
+			`);
+            i.parentNode.insertBefore(pc, i);
+            pc.appendChild(pc_icon);
 
             // Create a balloon
-            pc_balloon.className = 'password-checker__balloon'
-            pc_balloon_arrow.className = 'password-checker__balloon-arrow'
-            pc_balloon_text.className = 'password-checker__balloon-text'
+            pc_balloon.className = 'password-checker__balloon';
+            pc_balloon_arrow.className = 'password-checker__balloon-arrow';
+            pc_balloon_text.className = 'password-checker__balloon-text';
             pc_balloon_arrow.style.cssText = (`
 				top: calc(${ipos.bottom}px - ${ipos.top}px + 3px) !important;
 				right: -2px !important;
-			`)
+			`);
             pc_balloon_text.style.cssText = (`
 				top: calc(${ipos.bottom}px - ${ipos.top}px + 13px) !important;
 				right: -10px !important;
-			`)
-            pc_balloon.appendChild(pc_balloon_arrow)
-            pc_balloon.appendChild(pc_balloon_text)
-            pc.appendChild(pc_balloon)
+			`);
+            pc_balloon.appendChild(pc_balloon_arrow);
+            pc_balloon.appendChild(pc_balloon_text);
+            pc.appendChild(pc_balloon);
 
             // Initial set up of the container -- in case the input has a not null value
-            inputKeyUpEventHandler(i, pc_icon, pc_balloon)
+            inputKeyUpEventHandler(i, pc_icon, pc_balloon);
 
             // Set up event handlers
-            i.addEventListener('keyup', inputKeyUpEventHandler.bind(null, i, pc_icon, pc_balloon))
-            pc_icon.addEventListener('click', iconClickEventHandler.bind(null, pc_balloon))
+            i.addEventListener('keyup', inputKeyUpEventHandler.bind(null, i, pc_icon, pc_balloon));
+            pc_icon.addEventListener('click', iconClickEventHandler.bind(null, pc_balloon));
         }
     }
 }

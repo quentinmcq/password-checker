@@ -1,15 +1,16 @@
 browser.runtime.onMessage.addListener(
     (request, sender, sendResponse) => {
         if (request.cmd === 'getState') {
-            let state = false
+            let state = false;
+            const passwordChecker = JSON.parse(localStorage.getItem('password_checker'));
 
             try {
-                state = (n = JSON.parse(localStorage.getItem('password_checker'))) ? n : false
+                state = passwordChecker ?? false;
             } catch (e) {
-                console.error(e)
+                console.error(e);
             }
 
-            sendResponse({state})
+            sendResponse({state});
         }
     }
 )
