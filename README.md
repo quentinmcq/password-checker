@@ -1,8 +1,9 @@
-# PasswordChecker
+# PasswordChecker (Extension web)
 
-Extension for checking passwords strength and generating passwords.
-
-Supports multiple `password` inputs on a single page.
+- Permet de vérifier la robustesse de vos mots de passe.
+- Disponible sur tous les navigateurs.
+- Facilité d'utilisation.
+- Support de plusieurs champs de mot de passe dans une même page.
 
 ## Interface générale
 
