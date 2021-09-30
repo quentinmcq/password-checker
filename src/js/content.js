@@ -4,7 +4,7 @@ const getState = () => {
             {cmd: "getState"},
             response => {
                 if (response) {
-                    resolve(response.state)
+                    resolve(response.state);
                 } else {
                     reject('Cannot resolve status');
                 }
@@ -59,14 +59,14 @@ const inputKeyUpEventHandler = async (i, c, b) => {
 
 const iconClickEventHandler = b => {
     if (window.getComputedStyle(b).display === 'none') {
-        b.style.display = 'block'
+        b.style.display = 'block';
     } else {
-        b.style.display = 'none'
+        b.style.display = 'none';
     }
 }
 
 const destroyContainers = () => {
-    const containers = document.getElementsByClassName('password-checker')
+    const containers = document.getElementsByClassName('password-checker');
 
     while (containers.length > 0) {
         containers[0].parentNode.removeChild(containers[0]);
@@ -74,19 +74,19 @@ const destroyContainers = () => {
 }
 
 const constructContainers = () => {
-    const inputs = document.getElementsByTagName("input")
+    const inputs = document.getElementsByTagName('input');
 
     // For each input...
     for (let o = 0; o < inputs.length; o++) {
         // ...of `password` type
-        if (inputs[o].type.toLowerCase() === "password") {
-            const i = inputs[o]
-            const ipos = i.getBoundingClientRect()
-            const pc = document.createElement('div')
-            const pc_icon = document.createElement('div')
-            const pc_balloon = document.createElement('div')
-            const pc_balloon_arrow = document.createElement('div')
-            const pc_balloon_text = document.createElement('div')
+        if (inputs[o].type.toLowerCase() === 'password') {
+            const i = inputs[o];
+            const ipos = i.getBoundingClientRect();
+            const pc = document.createElement('div');
+            const pc_icon = document.createElement('div');
+            const pc_balloon = document.createElement('div');
+            const pc_balloon_arrow = document.createElement('div');
+            const pc_balloon_text = document.createElement('div');
 
             //// Create a container
 
@@ -138,6 +138,6 @@ browser.runtime.onMessage.addListener(
 window.onload = async () => {
     // If password check is on -- initialize containers
     if (await getState() === true) {
-        constructContainers()
+        constructContainers();
     }
 }

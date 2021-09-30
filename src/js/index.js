@@ -17,7 +17,6 @@ const generatePassword = passwordLength => {
         chars = '0123456789abcdefghijklmnopqrstuvwxyz?!@#$%^&*()ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     }
 
-
     for (let i = 0; i <= passwordLength; i++) {
         const randomNumber = Math.floor(Math.random() * chars.length);
         password += chars.substring(randomNumber, randomNumber + 1);

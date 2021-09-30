@@ -12,8 +12,6 @@
 	align-items: center;
 	visibility: hidden;
 	cursor: pointer;
-	border-radius: 30px;
-	margin-right: 4px;
 }
 
 .password-checker__icon.strong {
