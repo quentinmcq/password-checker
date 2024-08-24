@@ -1,3 +1,5 @@
+## Crédit : [@arfeo](https://github.com/arfeo/PasswordChecker)
+
 # PasswordChecker (Extension web)
 
 - Permet de vérifier la robustesse de vos mots de passe.
